@@ -75,33 +75,3 @@ Shader::~Shader()
 	glDeleteProgram(program);
 }
 
-Rect::Rect()
-{
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(coords), coords, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
-	glEnableVertexAttribArray(0);
-}
-
-Rect::Rect(float x, float y, float width, float height) : Rect()
-{
-	model = glm::translate(model, glm::vec3(x, y, 0));
-	model = glm::scale(model, glm::vec3(width, height, 1.0));
-}
-
-Rect::~Rect()
-{
-	glDeleteBuffers(1, &vbo);
-	glDeleteVertexArrays(1, &vao);
-}
-
-void Rect::draw(const Shader & s)
-{
-	glBindVertexArray(vao);
-	s.setMat4("model", model);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glBindVertexArray(0);
-}

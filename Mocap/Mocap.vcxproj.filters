@@ -42,7 +42,10 @@
     <ClCompile Include="VRModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlaybackViewModel.cpp">
+    <ClCompile Include="BufferViewModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BVHLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +77,16 @@
     <ClInclude Include="trackingObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlaybackViewModel.h">
+    <ClInclude Include="BufferViewModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BVHLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,15 +2,16 @@
 #include <stdio.h>
 #include "VRModel.h"
 #include "RenderView.h"
-#include "PlaybackViewModel.h"
+#include "BufferViewModel.h"
 #include <time.h>
+#include "BVHLogger.h"
 int main() {
 	Window display("Mocap", 800, 800);
 	display.show(windowVisibility::show);
 	RenderView view(800, 800);
 	bool playbackMode = false;
 	VRModel model;
-	PlaybackViewModel pvm;
+	BufferViewModel pvm;
 	auto trackedObjs = model.getAllObjs();
 	for (auto obj : trackedObjs) {
 		view.addTrackingObj(obj);
@@ -18,6 +19,7 @@ int main() {
 	}
 	pvm.startRecording();
 	clock_t lastPress = 0;
+	clock_t playback = 0;
 	while (!display.shouldQuit()) {
 //		if (clock() - lastClock < CLOCKS_PER_SEC / 90.f) continue; //90 fps
 		display.pollEvents();
@@ -25,8 +27,14 @@ int main() {
 			printf("Changing modes\n");
 			if (playbackMode)
 				pvm.startRecording();
-			else
+			else {
 				pvm.finishRecording();
+				pvm.serialize("mocapdata.db");
+				BVHLogger l;
+				pvm.writeLog("test.bvh", l);
+				playback = clock();
+				pvm.load("mocapdata.db");
+			}
 			playbackMode = !playbackMode;
 			lastPress = clock();
 		}
@@ -39,7 +47,7 @@ int main() {
 		}
 		else {
 			for (auto obj : trackedObjs) {
-				glm::mat4 m = pvm.getDeviceTransform(obj);
+				glm::mat4 m = pvm.getDeviceTransform(obj, clock() - playback);
 				view.savePose(obj, m);
 			}
 		}

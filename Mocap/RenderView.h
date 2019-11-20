@@ -17,8 +17,8 @@ public:
 	void startRecording() override;
 	void finishRecording() override;
 	void addTrackingObj(trackingObjects obj) override;
-	void savePose(trackingObjects obj, glm::mat4 & pose) override;
-	void savePose(trackingObjects obj, glm::mat4 && pose) override;
+	void savePose(trackingObjects obj, glm::mat4 & pose, long frame = -1) override;
+	void savePose(trackingObjects obj, glm::mat4 && pose, long frame = -1) override;
 	void draw();
 	~RenderView();
 };

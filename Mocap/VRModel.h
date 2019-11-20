@@ -9,6 +9,7 @@ private:
 public:
 	VRModel();
 	glm::mat4 getDeviceTransform(trackingObjects d) override;
+	glm::mat4 getDeviceTransform(trackingObjects o, long f) override;
 	std::vector<trackingObjects> getAllObjs() override;
 	~VRModel();
 };

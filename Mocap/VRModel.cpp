@@ -59,6 +59,10 @@ glm::mat4 VRModel::getDeviceTransform(trackingObjects d)
 	}
 	return openVrToGlm(pose.mDeviceToAbsoluteTracking);
 }
+glm::mat4 VRModel::getDeviceTransform(trackingObjects o, long f)
+{
+	return getDeviceTransform(o);
+}
 std::vector<trackingObjects> VRModel::getAllObjs()
 {
 	std::vector<trackingObjects> list;
