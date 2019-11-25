@@ -67,11 +67,11 @@ glm::mat4 BufferViewModel::getDeviceTransform(trackingObjects d, long f)
 	glm::mat4 * transform = nullptr;
 	for (size_t i = pimpl->lastObjPos[d]; i < pimpl->objPoses[objId].size(); ++i) {
 		struct pose & p = pimpl->objPoses[objId][i];
+		transform = &p.transform;
 		if (now < p.time) {
 			pimpl->lastObjPos[d] = i;
 			break;
 		}
-		transform = &p.transform;
 	}
 	if (transform != nullptr) return *transform;
 	return glm::mat4();
@@ -164,5 +164,5 @@ void BufferViewModel::writeLog(const char * file, Logger & log)
 	objs.resize(pimpl->objIds.size());
 	for (auto it : pimpl->objIds)
 		objs[it.second] = it.first;
-	log.out(file, &pimpl->objPoses[0][0], &objs[0], objs.size(), pimpl->objPoses[0].size(), pimpl->duration);
+	log.out(file, pimpl->objPoses, &objs[0], objs.size(), pimpl->objPoses[0].size(), pimpl->duration);
 }

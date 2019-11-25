@@ -31,6 +31,7 @@ int main() {
 				pvm.finishRecording();
 				pvm.serialize("mocapdata.db");
 				BVHLogger l;
+				l.resampleToFrameRate(24);
 				pvm.writeLog("test.bvh", l);
 				playback = clock();
 				pvm.load("mocapdata.db");

@@ -44,7 +44,7 @@ Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(n
 				if (hRc == NULL) errorCode = 300;
 				else {
 					if (wglMakeCurrent(hDc, hRc) == FALSE) errorCode = 400;
-					else {
+					else {						
 						if (!gladLoadGL()) errorCode = 500;
 					}
 				}
