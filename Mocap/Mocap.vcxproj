@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
