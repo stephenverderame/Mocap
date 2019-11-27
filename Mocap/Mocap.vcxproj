@@ -71,26 +71,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\glew-2.1.0\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master\headers;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -101,7 +101,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -114,7 +114,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -129,7 +129,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -144,6 +144,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="BufferViewModel.cpp" />
+    <ClCompile Include="RenderCapture.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderObject.cpp" />
     <ClCompile Include="RenderView.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="BufferViewModel.h" />
     <ClInclude Include="pose.h" />
+    <ClInclude Include="RenderCapture.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="RenderView.h" />

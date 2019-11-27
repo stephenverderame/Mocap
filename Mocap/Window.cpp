@@ -56,7 +56,7 @@
 #define WGL_SAMPLES_ARB 0x2042
 #pragma endregion //WGL
 using wglChoosePixelFormatARB_PROC = BOOL(__stdcall*)(HDC, const int *, const FLOAT *, UINT, int *, UINT *);
-Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(nullptr), hRc(nullptr), errorCode(0) 
+Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(nullptr), hRc(nullptr), errorCode(0)
 {
 	WNDCLASSEX wc;
 	ZeroMemory(&wc, sizeof(WNDCLASSEX));
@@ -126,9 +126,6 @@ Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(n
 						wglMakeCurrent(hDc, hRc);
 						if (!gladLoadGL()) errorCode = 500;
 						glEnable(GL_MULTISAMPLE);
-						int samps = -1;
-						glGetIntegerv(GL_SAMPLES, &samps);
-						printf("%d\n", samps);
 					}
 				}
 			}
