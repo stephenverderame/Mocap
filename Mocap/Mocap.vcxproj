@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\stb_image;C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\stb_image;C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\stb_image;C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\stephen\Desktop\coding stuff\stb_image;C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\include;C:\Users\stephen\Desktop\coding stuff\glm-0.9.8.4\glm;C:\Users\stephen\Desktop\coding stuff\openvr-master;C:\Users\stephen\Desktop\coding stuff\Glad 3.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\stephen\Desktop\coding stuff\ffmpeg\ffmpeg-20190913-0993327-win64-dev\lib;C:\Users\stephen\Desktop\coding stuff\openvr-master\lib\win64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Desktop\coding stuff\Glad 3.3\src\glad.c" />
     <ClCompile Include="BVHLogger.cpp" />
+    <ClCompile Include="Control.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="BufferViewModel.cpp" />
     <ClCompile Include="RenderCapture.cpp" />
@@ -154,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BVHLogger.h" />
+    <ClInclude Include="Control.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="BufferViewModel.h" />
@@ -162,6 +167,8 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="RenderView.h" />
+    <ClInclude Include="res.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="trackingObjects.h" />
     <ClInclude Include="View.h" />
@@ -169,8 +176,13 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="postprocessFrag.glsl" />
+    <None Include="postprocessVert.glsl" />
     <None Include="renderFrag.glsl" />
     <None Include="renderVert.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

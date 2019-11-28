@@ -2,6 +2,9 @@
 #include <Windows.h>
 #include <glad/glad.h>
 #include <time.h>
+#include <vector>
+#include "event.h"
+#include "res.h"
 #pragma region WGL
 #define WGL_NUMBER_PIXEL_FORMATS_ARB 0x2000
 #define WGL_DRAW_TO_WINDOW_ARB 0x2001
@@ -55,17 +58,31 @@
 #define WGL_SAMPLE_BUFFERS_ARB 0x2041
 #define WGL_SAMPLES_ARB 0x2042
 #pragma endregion //WGL
+struct winImpl
+{
+	std::vector<Observer *> obs;
+	std::vector<EventListener> commandListeners;
+	std::vector<EventListener> eventListeners;
+};
 using wglChoosePixelFormatARB_PROC = BOOL(__stdcall*)(HDC, const int *, const FLOAT *, UINT, int *, UINT *);
+Window * Window::activeWindow = nullptr;
+HCURSOR cursors[5];
+cursorType Window::activeCursor = cursorType::normal;
 Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(nullptr), hRc(nullptr), errorCode(0)
 {
+	pimpl = std::make_unique<winImpl>();
+	cursors[0] = LoadCursor(NULL, MAKEINTRESOURCE(IDC_ARROW));
+	cursors[1] = LoadCursor(NULL, MAKEINTRESOURCE(IDC_HAND));
+	activeWindow = this;
 	WNDCLASSEX wc;
 	ZeroMemory(&wc, sizeof(WNDCLASSEX));
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = DefWindowProc;
+	wc.lpfnWndProc = Window::windowProc;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
 	wc.lpszClassName = "defWindowClass";
+	wc.lpszMenuName = MAKEINTRESOURCE(ID_MENU);
 	RECT size = { 0, 0, width, height };
 	AdjustWindowRect(&size, WS_OVERLAPPED, FALSE);
 	RegisterClassEx(&wc);
@@ -179,5 +196,56 @@ bool Window::shouldQuit()
 bool Window::isKeyPress(keyCode k)
 {
 	return GetAsyncKeyState((int)k) < 0;
+}
+LRESULT __stdcall Window::windowProc(HWND window, UINT msg, WPARAM w, LPARAM l)
+{
+	Event e;
+	e.ev = controlEvent::null;
+	switch (msg) {
+	case WM_LBUTTONDOWN:
+		e.ev = controlEvent::click;
+		e.x = LOWORD(l);
+		e.y = HIWORD(l);
+		break;
+	case WM_MOUSEMOVE:
+		e.ev = controlEvent::hover;
+		e.x = LOWORD(l);
+		e.y = HIWORD(l);
+		break;
+	case WM_SETCURSOR:
+		SetCursor(cursors[(int)activeWindow->activeCursor]);
+		return TRUE;
+	case WM_COMMAND:
+		for (auto it : activeWindow->pimpl->commandListeners) {
+			if (it.eventId == LOWORD(w)) {
+				if(it.callback(w, l)) return TRUE;
+			}
+		}
+	}
+	for (auto e : activeWindow->pimpl->eventListeners) {
+		if (e.eventId == msg) {
+			if (e.callback(w, l)) return TRUE;
+		}
+	}
+	for (auto it : activeWindow->pimpl->obs)
+		it->notify(e);
+	return DefWindowProc(window, msg, w, l);
+	
+}
+void Window::attach(class Observer & ob)
+{
+	pimpl->obs.push_back(&ob);
+}
+void Window::addCommandListener(EventListener el)
+{
+	pimpl->commandListeners.push_back(el);
+}
+void Window::addEventListener(EventListener el)
+{
+	pimpl->eventListeners.push_back(el);
+}
+void Window::setCursor(cursorType c)
+{
+	activeCursor = c;
 }
 

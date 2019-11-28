@@ -39,6 +39,7 @@ void RenderView::draw()
 	for (auto it = objs.cbegin(); it != objs.cend(); ++it) {
 		renderer->draw(it->second);
 	}
+	renderer->bindTarget();
 }
 
 void RenderView::startRecording()

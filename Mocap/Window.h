@@ -1,5 +1,7 @@
 #pragma once
 #include <functional>
+#include <memory>
+struct winImpl;
 enum class windowVisibility {
 	hide,
 	showNormal,
@@ -26,6 +28,14 @@ enum class keyCode {
 	n_0 = 0x60, n_1, n_2, n_3, n_4, n_5, n_6, n_7, n_8, n_9, n_multiply, n_add, n_sep, n_subtract, n_decimal, n_divide,
 	f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12
 };
+enum class cursorType {
+	normal, hand
+};
+struct EventListener
+{
+	std::function<bool(unsigned long long w, long long l)> callback;
+	int eventId;
+};
 class Window
 {
 private:
@@ -34,6 +44,10 @@ private:
 	struct HGLRC__ * hRc;
 	int errorCode;
 	bool quit;
+	static Window * activeWindow;
+	static long long __stdcall windowProc(struct HWND__ *, unsigned int, unsigned long long, long long);
+	std::unique_ptr<winImpl> pimpl;
+	static cursorType activeCursor;
 public:
 	Window(const char * title, int width, int height);
 	int getLastError();
@@ -43,5 +57,10 @@ public:
 	void switchBuffers();
 	bool shouldQuit();
 	bool isKeyPress(keyCode k);
+	void attach(class Observer & ob);
+	void addCommandListener(EventListener el);
+	void addEventListener(EventListener el);
+public:
+	static void setCursor(cursorType c);
 };
 

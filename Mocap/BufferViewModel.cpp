@@ -166,3 +166,10 @@ void BufferViewModel::writeLog(const char * file, Logger & log)
 		objs[it.second] = it.first;
 	log.out(file, pimpl->objPoses, &objs[0], objs.size(), pimpl->objPoses[0].size(), pimpl->duration);
 }
+
+void BufferViewModel::clearBuffer()
+{
+	pimpl->objPoses.clear();
+	pimpl->objIds.clear();
+	pimpl->lastObjPos.clear();
+}

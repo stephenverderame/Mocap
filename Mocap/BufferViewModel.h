@@ -23,4 +23,6 @@ public:
 	void load(const char * file);
 
 	void writeLog(const char * file, class Logger & log);
+
+	void clearBuffer();
 };
