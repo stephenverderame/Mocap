@@ -69,6 +69,7 @@ void Gui::display()
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	pimpl->shader->setBool("ms", false);
 	for (auto control : pimpl->controls) {
+		if (!control->isShown()) continue;
 		control->bindTarget();
 		auto d = control->getDimensions();
 		model = glm::mat4();
@@ -89,17 +90,22 @@ void Gui::notify(Event e)
 {
 	bool mouseInControl = false;
 	for (size_t i = 0; i < pimpl->controls.size(); ++i) {
+		if (!pimpl->controls[i]->isShown() || !pimpl->controls[i]->isEnabled()) continue;
 		auto c = pimpl->controls[i];
 		auto dim = c->getDimensions();
 		if (e.x >= dim.x && e.x <= dim.x + dim.w && e.y >= dim.y && e.y <= dim.y + dim.h) {
 			if (e.ev == controlEvent::click)
 				if (c->mouseClick != nullptr) c->mouseClick();
 			if (e.ev == controlEvent::hover) {
-				if (c->mouseOver != nullptr && pimpl->lastMouseIn != i) c->mouseOver();
+				if (c->mouseIn != nullptr && pimpl->lastMouseIn != i) c->mouseIn();
+				if (c->mouseOver != nullptr) c->mouseOver();
 				if (pimpl->lastMouseIn != ~0 && i != pimpl->lastMouseIn && pimpl->controls[pimpl->lastMouseIn]->mouseOut != nullptr) 
 					pimpl->controls[pimpl->lastMouseIn]->mouseOut();
 				pimpl->lastMouseIn = i;
 				mouseInControl = true;
+			}
+			else if (e.ev == controlEvent::release) {
+				if (c->mouseRelease != nullptr) c->mouseRelease();
 			}
 		}
 	}

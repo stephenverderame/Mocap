@@ -25,4 +25,6 @@ public:
 	void writeLog(const char * file, class Logger & log);
 
 	void clearBuffer();
+
+	long getDuration();
 };

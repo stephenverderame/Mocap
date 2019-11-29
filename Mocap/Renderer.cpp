@@ -81,10 +81,10 @@ void Renderer::clear()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbos[0]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.5, 0.5, 0.5, 1.0);
+	glClearColor(0.5, 1.0, 0.5, 1.0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.5, 0.5, 0.5, 1.0);
+	glClearColor(0.5, 1.0, 0.5, 1.0);
 }
 
 void Renderer::bindTarget()

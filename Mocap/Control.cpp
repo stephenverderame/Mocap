@@ -4,7 +4,7 @@
 #include <glad\glad.h>
 
 
-Control::Control(std::initializer_list<const char *> textures, unsigned int x, unsigned int y, unsigned int w, unsigned int h) : x(x), y(y), w(w), h(h)
+Control::Control(std::initializer_list<const char *> textures, unsigned int x, unsigned int y, unsigned int w, unsigned int h) : x(x), y(y), w(w), h(h), show(true), enabled(true)
 {
 	unsigned int i = 0;
 	activeTexture = 0;
@@ -21,6 +21,12 @@ Control::Control(std::initializer_list<const char *> textures, unsigned int x, u
 	}
 }
 
+
+void Control::setPos(unsigned int x, unsigned int y)
+{
+	if (x != ~0) this->x = x;
+	if (y != ~0) this->y = y;
+}
 
 Control::~Control()
 {

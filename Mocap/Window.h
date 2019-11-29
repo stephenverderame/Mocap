@@ -48,6 +48,7 @@ private:
 	static long long __stdcall windowProc(struct HWND__ *, unsigned int, unsigned long long, long long);
 	std::unique_ptr<winImpl> pimpl;
 	static cursorType activeCursor;
+	static int mouseX, mouseY;
 public:
 	Window(const char * title, int width, int height);
 	int getLastError();
@@ -62,5 +63,6 @@ public:
 	void addEventListener(EventListener el);
 public:
 	static void setCursor(cursorType c);
+	static void getMousePos(int & x, int & y);
 };
 

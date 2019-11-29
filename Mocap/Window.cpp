@@ -66,6 +66,8 @@ struct winImpl
 };
 using wglChoosePixelFormatARB_PROC = BOOL(__stdcall*)(HDC, const int *, const FLOAT *, UINT, int *, UINT *);
 Window * Window::activeWindow = nullptr;
+int Window::mouseX = 0;
+int Window::mouseY = 0;
 HCURSOR cursors[5];
 cursorType Window::activeCursor = cursorType::normal;
 Window::Window(const char * title, int width, int height) : hWnd(nullptr), hDc(nullptr), hRc(nullptr), errorCode(0)
@@ -211,6 +213,13 @@ LRESULT __stdcall Window::windowProc(HWND window, UINT msg, WPARAM w, LPARAM l)
 		e.ev = controlEvent::hover;
 		e.x = LOWORD(l);
 		e.y = HIWORD(l);
+		Window::mouseX = e.x;
+		Window::mouseY = e.y;
+		break;
+	case WM_LBUTTONUP:
+		e.ev = controlEvent::release;
+		e.x = LOWORD(l);
+		e.y = HIWORD(l);
 		break;
 	case WM_SETCURSOR:
 		SetCursor(cursors[(int)activeWindow->activeCursor]);
@@ -247,5 +256,11 @@ void Window::addEventListener(EventListener el)
 void Window::setCursor(cursorType c)
 {
 	activeCursor = c;
+}
+
+void Window::getMousePos(int & x, int & y)
+{
+	x = mouseX;
+	y = mouseY;
 }
 

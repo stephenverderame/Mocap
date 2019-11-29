@@ -69,7 +69,8 @@ glm::mat4 BufferViewModel::getDeviceTransform(trackingObjects d, long f)
 		struct pose & p = pimpl->objPoses[objId][i];
 		transform = &p.transform;
 		if (now < p.time) {
-			pimpl->lastObjPos[d] = i;
+			pimpl->lastObjPos[d] = (double)now / pimpl->duration * pimpl->objPoses[objId].size() - 20;
+			if (pimpl->lastObjPos[d] < 0 || pimpl->lastObjPos[d] >= pimpl->objPoses[objId].size()) pimpl->lastObjPos[d] = 0;
 			break;
 		}
 	}
@@ -172,4 +173,9 @@ void BufferViewModel::clearBuffer()
 	pimpl->objPoses.clear();
 	pimpl->objIds.clear();
 	pimpl->lastObjPos.clear();
+}
+
+long BufferViewModel::getDuration()
+{
+	return pimpl->duration;
 }
